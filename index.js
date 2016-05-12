@@ -18,7 +18,15 @@ bot.on('error', (err) => {
 bot.on('message', (payload, reply) => {
     let text = payload.message.text
     reply({
-        text
+        switch(text){
+            case 'test':
+                'test'
+            break 
+            case default:
+            text
+        }
+
+
     }, (err) => {
         if (err) throw err
 
