@@ -18,7 +18,20 @@ bot.on('error', (err) => {
 bot.on('message', (payload, reply) => {
     let text = payload.message.text
     reply({
-        text + response.respond(text)
+
+        // en fontion du text en entrée, la réponse varie
+    switch(text) {
+        case 'Bonjour':
+            'Bonjour'
+            break;
+        case 'Salut':
+            'Saluts'
+            break;
+        default:
+            text
+    } 
+
+
     }, (err) => {
         if (err) throw err
 
