@@ -1,0 +1,3 @@
+exports.repond = function(textEntree){
+	
+};

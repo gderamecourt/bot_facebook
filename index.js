@@ -1,8 +1,8 @@
-"use strict";
+// "use strict";
 
 const http = require('http')
 const Bot = require('messenger-bot')
-
+var response = require('⋅/response')
 const FB_TOKEN = process.env.FB_TOKEN
 const FB_VERIFY = process.env.FB_VERIFY
 
@@ -18,7 +18,7 @@ bot.on('error', (err) => {
 bot.on('message', (payload, reply) => {
     let text = payload.message.text
     reply({
-        text
+        response.repond(text)
     }, (err) => {
         if (err) throw err
 
