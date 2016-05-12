@@ -1,4 +1,4 @@
-// "use strict";
+"use strict";
 
 const http = require('http')
 const Bot = require('messenger-bot')
@@ -18,7 +18,7 @@ bot.on('error', (err) => {
 bot.on('message', (payload, reply) => {
     let text = payload.message.text
     reply({
-        text
+        response.respond(text)
     }, (err) => {
         if (err) throw err
 
