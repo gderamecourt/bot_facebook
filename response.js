@@ -1,0 +1,1 @@
+exports.respond = (text) =>	text
