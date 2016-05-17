@@ -19,8 +19,6 @@ bot.on('message', (payload, reply) => {
     let text = payload.message.text
     reply({
         text
-        }
-
     }, (err) => {
         if (err) throw err
 
