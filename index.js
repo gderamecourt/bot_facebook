@@ -18,7 +18,12 @@ bot.on('error', (err) => {
 bot.on('message', (payload, reply) => {
     let text = payload.message.text;
     reply({
-        text;
+        if(text == 'test'){
+            'success';
+        }
+        else {
+            'Bonjour, veuillez préciser votre demande.';
+        }
     }, (err) => {
         if (err) throw err;
 
