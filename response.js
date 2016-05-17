@@ -1,1 +1,3 @@
-exports.respond = (text) =>	text
+exports.respond = function(text){
+	return text
+}
