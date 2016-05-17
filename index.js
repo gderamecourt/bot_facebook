@@ -19,8 +19,8 @@ bot.on('error', (err) => {
 bot.on('message', (payload, reply) => {
     let text = payload.message.text
     reply({
-        // text
-        response.respond(text)
+        if (text == 'test') 'success'
+        else '?'
     }, (err) => {
         if (err) throw err
 
