@@ -2,7 +2,6 @@
 
 const http = require('http')
 const Bot = require('messenger-bot')
-var response = require('./response')
 
 const FB_TOKEN = process.env.FB_TOKEN
 const FB_VERIFY = process.env.FB_VERIFY
