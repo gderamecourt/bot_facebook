@@ -46,7 +46,7 @@ app.post('/webhook/', function (req, res) {
     sender = event.sender.id;
     if (event.message && event.message.text) {
       text = event.message.text;
-      
+      console.log('TEXT : ' + text);
       //function 
       messageData = {
         text:text
@@ -66,6 +66,7 @@ app.post('/webhook/', function (req, res) {
           console.log('Error: ', response.body.error);
         }
       });
+      console.log('FIN DE LA REQUEST');
 
     }
   }
