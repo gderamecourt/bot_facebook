@@ -11,8 +11,8 @@ var response = equire('./routes/response.js')
 
 var app = express();
 
-const FB_TOKEN = process.env.FB_TOKEN
-const FB_VERIFY = process.env.FB_VERIFY
+const FB_TOKEN = process.env.FB_TOKEN;
+const FB_VERIFY = process.env.FB_VERIFY;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -46,7 +46,7 @@ app.post('/webhook/', function (req, res) {
     sender = event.sender.id;
     if (event.message && event.message.text) {
       text = event.message.text;
-      sendTextMessage(sender, text);
+      response.sendTextMessage(sender, text, FB_TOKEN);
     }
   }
   res.sendStatus(200);
@@ -82,26 +82,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
-function sendTextMessage(sender, text) {
-  messageData = {
-    text:text
-  }
-  request({
-    url: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: {access_token:FB_TOKEN},
-    method: 'POST',
-    json: {
-      recipient: {id:sender},
-      message: messageData,
-    }
-  }, function(error, response, body) {
-    if (error) {
-      console.log('Error sending message: ', error);
-    } else if (response.body.error) {
-      console.log('Error: ', response.body.error);
-    }
-  });
-}
 
 module.exports = app;
