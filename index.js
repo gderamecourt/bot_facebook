@@ -17,14 +17,17 @@ bot.on('error', (err) => {
 
 bot.on('message', (payload, reply) => {
     let text = payload.message.text
+    console.log('text : ' + text)
+
     let response = 'Bonjour'
+    console.log('response : ' + response)
 
     if (text === 'Bonjour'){
         response = 'Bonjour, que puis-je faire pour vous?'
     } else {
         response = text
     }
-
+    console.log()
     reply({
         response
     }, (err) => {
