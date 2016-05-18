@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var response = equire('./routes/response.js')
+var response = require('./routes/response.js')
 
 var app = express();
 
@@ -66,7 +66,7 @@ app.post('/webhook/', function (req, res) {
           console.log('Error: ', response.body.error);
         }
       });
-  
+
     }
   }
   res.sendStatus(200);
