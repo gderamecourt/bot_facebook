@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var response = equire('./routes/response.js')
 
 var app = express();
 
@@ -45,7 +46,7 @@ app.post('/webhook/', function (req, res) {
     sender = event.sender.id;
     if (event.message && event.message.text) {
       text = event.message.text;
-      // Handle a text message from this sender
+      response.sendTextMessage(sender, text);
     }
   }
   res.sendStatus(200);
