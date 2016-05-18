@@ -10,6 +10,9 @@ var users = require('./routes/users');
 
 var app = express();
 
+const FB_TOKEN = process.env.FB_TOKEN
+const FB_VERIFY = process.env.FB_VERIFY
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -24,6 +27,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+
+// verification of the token
+app.get('/webhook', function (req, res) {
+  if (req.query['hub.verify_token'] === FB_VERIFY) {
+    res.send(req.query['hub.challenge']);
+  } else {
+    res.send('Error, wrong validation token');    
+  }
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
