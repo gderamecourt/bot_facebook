@@ -9,9 +9,12 @@ exports.receiveMessage = function(req, res, next){
     if(instance.message && instance.message.text) {
       var msg_text = instance.message.text;
       firstMessage(sender, msg_text);
-    } else if(event.postback && event.postback.payload) {
+    } else if(instance.postback && instance.postback.payload) {
       // If the message is sent from a button postback : 
-      payload = event.postback.payload;
+      payload = instance.postback.payload;
+      
+      console.log('Je suis dans le postback et le postback est : ' + payload);
+
       // if the postback is 'meteo'
       if (payload === 'meteo'){
         meteo();
