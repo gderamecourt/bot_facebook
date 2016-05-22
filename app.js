@@ -21,13 +21,17 @@ app.get('/webhook/', handleVerify);
 app.post('/webhook/', receiveMessage);
 
 function handleVerify(req, res, next){
+  console.log('je suis passe dans handleVerify!!');
   if (req.query['hub.verify_token'] === conf.VERIFY_TOKEN) {
+    console.log('handleVerify success!!');
     return res.send(req.query['hub.challenge']);
   }
+  console.log('handleVerify fail!!');
   res.send('Validation failed, Verify token mismatch');
 }
 
 function receiveMessage(req, res, next){
+  console.log('je suis passe dans receiveMessage!!');
   var message_instances = req.body.entry[0].messaging;
   message_instances.forEach(function(instance){
     var sender = instance.sender.id;
