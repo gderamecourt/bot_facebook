@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Bot facebook",
   "scripts": {
-    "start": "npm start app.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
