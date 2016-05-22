@@ -1,6 +1,7 @@
 var request = require('request');
 var conf = require('../conf');
 
+// Dealing with the reception of the message
 exports.receiveMessage = function(req, res, next){
   console.log('je suis passe dans receiveMessage!!');
   var message_instances = req.body.entry[0].messaging;
@@ -8,22 +9,34 @@ exports.receiveMessage = function(req, res, next){
     var sender = instance.sender.id;
     if(instance.message && instance.message.text) {
       var msg_text = instance.message.text;
-      sendMessage(sender, msg_text, true);
+      firstMessage(sender, msg_text);
     }
   });
   res.sendStatus(200);
 }
 
-function sendMessage(receiver, data, isText){
+//Contruction of the message to send back
+function firstMessage(receiver, data){
   var payload = {};
-  payload = data;
   
-  if(isText) {
-    payload = {
-      text: data
+  // Construction of the message
+  payload = {
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"button",
+        "text":"Bonjour, Que voulez vous faire?",
+        "buttons":[
+          {
+            "type":"postback",
+            "title":"Start Chatting",
+            "payload":"USER_DEFINED_PAYLOAD"
+          }
+        ]
+      }
     }
   }
-
+  
   request({
     url: conf.FB_MESSAGE_URL,
     method: 'POST',
