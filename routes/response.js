@@ -1,20 +1,38 @@
-exports.sendTextMessage = function(sender, text, FB_TOKEN) {
-  messageData = {
-    text:text
+exports.receiveMessage = function(req, res, next){
+  console.log('je suis passe dans receiveMessage!!');
+  var message_instances = req.body.entry[0].messaging;
+  message_instances.forEach(function(instance){
+    var sender = instance.sender.id;
+    if(instance.message && instance.message.text) {
+      var msg_text = instance.message.text;
+      sendMessage(sender, msg_text, true);
+    }
+  });
+  res.sendStatus(200);
+}
+
+function sendMessage(receiver, data, isText){
+  var payload = {};
+  payload = data;
+  
+  if(isText) {
+    payload = {
+      text: data
+    }
   }
+
   request({
-    url: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: {access_token:FB_TOKEN},
+    url: conf.FB_MESSAGE_URL,
     method: 'POST',
+    qs: {
+      access_token: conf.PROFILE_TOKEN
+    },
     json: {
-      recipient: {id:sender},
-      message: messageData,
+      recipient: {id: receiver},
+      message: payload
     }
-  }, function(error, response, body) {
-    if (error) {
-      console.log('Error sending message: ', error);
-    } else if (response.body.error) {
-      console.log('Error: ', response.body.error);
-    }
+  }, function (error, response) {
+    if(error) console.log('Error sending message: ', error);
+    if(response.body.error) console.log('Error: ', response.body.error);
   });
 }
