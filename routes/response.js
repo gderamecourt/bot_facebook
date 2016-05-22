@@ -1,4 +1,5 @@
 var request = require('request');
+var conf = require('./conf');
 
 exports.receiveMessage = function(req, res, next){
   console.log('je suis passe dans receiveMessage!!');
