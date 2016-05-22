@@ -17,7 +17,7 @@ exports.receiveMessage = function(req, res, next){
 
       // if the postback is 'meteo'
       if (payload === 'meteo'){
-        meteo();
+        meteo(sender);
       }
     }
   });
@@ -62,7 +62,7 @@ function firstMessage(receiver, data){
   });
 }
 
-function meteo(){
+function meteo(receiver){
   payload = {
     text: "Pour utiliser la météo, écrivez meteo-[vote code postal]"
   }
