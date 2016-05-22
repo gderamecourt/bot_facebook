@@ -69,7 +69,8 @@ function sendMessage(receiver, data, isText){
   });
 }
 
-var port = conf.PORT;
+// For heroku assign ports dynamically
+var port = process.env.PORT || conf.PORT;
 httpServer.listen(port, function () {
   console.log("Express http server listening on port " + port);
 });
