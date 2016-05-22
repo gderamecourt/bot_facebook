@@ -29,14 +29,35 @@ function firstMessage(receiver, data){
         "buttons":[
           {
             "type":"postback",
-            "title":"Start Chatting",
-            "payload":"USER_DEFINED_PAYLOAD"
+            "title":"Connaitre la météo",
+            "payload":"meteo"
           }
         ]
       }
     }
   }
   
+  request({
+    url: conf.FB_MESSAGE_URL,
+    method: 'POST',
+    qs: {
+      access_token: conf.PROFILE_TOKEN
+    },
+    json: {
+      recipient: {id: receiver},
+      message: payload
+    }
+  }, function (error, response) {
+    if(error) console.log('Error sending message: ', error);
+    if(response.body.error) console.log('Error: ', response.body.error);
+  });
+}
+
+exports.meteo = function(req, res){
+  payload = {
+    text: "Pour utiliser la météo, écrivez meteo-[vote code postal]";
+  }
+
   request({
     url: conf.FB_MESSAGE_URL,
     method: 'POST',
