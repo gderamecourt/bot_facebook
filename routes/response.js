@@ -55,7 +55,7 @@ function firstMessage(receiver, data){
 
 exports.meteo = function(req, res){
   payload = {
-    text: "Pour utiliser la météo, écrivez meteo-[vote code postal]";
+    text: "Pour utiliser la météo, écrivez meteo-[vote code postal]"
   }
 
   request({
