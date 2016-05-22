@@ -1,3 +1,5 @@
+var request = require('request');
+
 exports.receiveMessage = function(req, res, next){
   console.log('je suis passe dans receiveMessage!!');
   var message_instances = req.body.entry[0].messaging;
