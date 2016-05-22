@@ -59,7 +59,7 @@ function firstMessage(receiver, data){
   });
 }
 
-exports.meteo = function(){
+function meteo(){
   payload = {
     text: "Pour utiliser la météo, écrivez meteo-[vote code postal]"
   }
