@@ -21,7 +21,6 @@ app.get('/', function (req, res, next) {
 
 app.get('/webhook/', facebookApi.handleVerify);
 app.post('/webhook/', response.receiveMessage);
-app.post('/webhook/meteo', response.meteo);
 
 // For heroku assign ports dynamically
 var port = process.env.PORT || conf.PORT;

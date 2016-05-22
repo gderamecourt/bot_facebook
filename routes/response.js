@@ -3,13 +3,19 @@ var conf = require('../conf');
 
 // Dealing with the reception of the message
 exports.receiveMessage = function(req, res, next){
-  console.log('je suis passe dans receiveMessage!!');
   var message_instances = req.body.entry[0].messaging;
   message_instances.forEach(function(instance){
     var sender = instance.sender.id;
     if(instance.message && instance.message.text) {
       var msg_text = instance.message.text;
       firstMessage(sender, msg_text);
+    } else if(event.postback && event.postback.payload) {
+      // If the message is sent from a button postback : 
+      payload = event.postback.payload;
+      // if the postback is 'meteo'
+      if (payload === 'meteo'){
+        meteo();
+      }
     }
   });
   res.sendStatus(200);
@@ -53,7 +59,7 @@ function firstMessage(receiver, data){
   });
 }
 
-exports.meteo = function(req, res){
+exports.meteo = function(){
   payload = {
     text: "Pour utiliser la météo, écrivez meteo-[vote code postal]"
   }
