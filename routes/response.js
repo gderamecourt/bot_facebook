@@ -92,7 +92,7 @@ function meteoHowTo(receiver){
 // gives the meteo back
 function meteoRequest(sender, city){
   // http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&APPID=conf.OWM_ID
-  var query = 'http://api.openweathermap.org/data/2.5/weather?q=' + London + '&units=metric&APPID=' + conf.OWM_ID;
+  var query = 'http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&APPID=' + conf.OWM_ID;
 
   var response = 'une erreur s\'est produite';
   request(query, function(error, response, body){
