@@ -96,11 +96,14 @@ function meteoRequest(sender, city){
 
   var response = 'une erreur s\'est produite';
   request(query, function(error, response, body){
-    if (!error && response.statusCode == 200) {
-      response = 'response : ' + response+ ', body : ' + body;
-    } else if (error){
-      response = error;
-    }
+    // if (!error && response.statusCode == 200) {
+    //   response = 'response : ' + response+ ', body : ' + body;
+    // } else if (error){
+    //   response = error;
+    // }
+
+    response = 'error : ' + error + ', response : ' + response + ', body : ' = body;
+
   });
 
   payload = {
