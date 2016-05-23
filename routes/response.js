@@ -9,6 +9,7 @@ exports.receiveMessage = function(req, res, next){
     if(instance.message && instance.message.text) {
       var msg_text = instance.message.text;
       if (msg_text.substring(0,2).toUpperCase() === 'M '){
+        var msg = 'on sen fout bordel';
         meteoRequest(sender, msg);
       } else {
         firstMessage(sender, msg_text.substring(6));  
