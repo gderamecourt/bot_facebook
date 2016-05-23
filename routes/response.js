@@ -8,7 +8,11 @@ exports.receiveMessage = function(req, res, next){
     var sender = instance.sender.id;
     if(instance.message && instance.message.text) {
       var msg_text = instance.message.text;
-      firstMessage(sender, msg_text);
+      if (msg_text.substring(0,2).toUpperCase() === 'M '){
+        meteoRequest(sender, msg);
+      } else {
+        firstMessage(sender, msg_text.substring(6));  
+      }
     } else if(instance.postback && instance.postback.payload) {
       // If the message is sent from a button postback : 
       payload = instance.postback.payload;
@@ -17,7 +21,7 @@ exports.receiveMessage = function(req, res, next){
 
       // if the postback is 'meteo'
       if (payload === 'meteo'){
-        meteo(sender);
+        meteoHowTo(sender);
       }
     }
   });
@@ -62,9 +66,10 @@ function firstMessage(receiver, data){
   });
 }
 
-function meteo(receiver){
+// explains how to use the meteo function
+function meteoHowTo(receiver){
   payload = {
-    text: "Pour utiliser la météo, écrivez meteo-[vote code postal]"
+    text: "Pour utiliser la météo, écrivez meteo-[nom de voter ville]"
   }
 
   request({
@@ -81,4 +86,37 @@ function meteo(receiver){
     if(error) console.log('Error sending message: ', error);
     if(response.body.error) console.log('Error: ', response.body.error);
   });
+}
+
+// gives the meteo back
+function meteoRequest(sender, city){
+  // http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&APPID=conf.OWM_ID
+  var query = 'http://api.openweathermap.org/data/2.5/weather?q=' + London + '&units=metric&APPID=' + conf.OWM_ID;
+
+  var response = 'une erreur s\'est produite';
+  request(query, function(error, response, body){
+    if (!error && response.statusCode == 200) {
+      response = 'response : ' + response+ ', body : ' + body;
+    }
+  });
+
+  payload = {
+    text: response
+  };
+
+  request({
+    url: conf.FB_MESSAGE_URL,
+    method: 'POST',
+    qs: {
+      access_token: conf.PROFILE_TOKEN
+    },
+    json: {
+      recipient: {id: sender},
+      message: payload
+    }
+  }, function (error, response) {
+    if(error) console.log('Error sending message: ', error);
+    if(response.body.error) console.log('Error: ', response.body.error);
+  });
+
 }
