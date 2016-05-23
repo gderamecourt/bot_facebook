@@ -102,7 +102,7 @@ function meteoRequest(sender, city){
     //   response = error;
     // }
 
-    response = 'error : ' + error + ', response : ' + response + ', body : ' = body;
+    response = 'error : ' + error.toString() + ', response : ' + response.toString() + ', body : ' = body.toString();
 
   });
 
