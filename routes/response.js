@@ -98,9 +98,9 @@ function meteoRequest(sender, city){
   request(query, function(error, response, body){
     if (!error && response.statusCode == 200) {
       response = 'response : ' + response+ ', body : ' + body;
-    } else if (error{
+    } else if (error){
       response = error;
-    })
+    }
   });
 
   payload = {
