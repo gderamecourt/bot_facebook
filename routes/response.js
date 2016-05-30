@@ -12,8 +12,8 @@ exports.receiveMessage = function(req, res, next){
     if(instance.message && instance.message.text) {
       var msg_text = instance.message.text;
       if (msg_text.substring(0,2).toUpperCase() === 'M '){
-        var msg = 'on sen fout bordel';
-        meteoRequest(sender, msg);
+        var city = 'on sen fout bordel';
+        meteoRequest(sender, city);
       } else {
         firstMessage(sender, msg_text.substring(6));  
       }
@@ -102,6 +102,7 @@ function meteoRequest(sender, city){
     if (error !== null) {
       response = 'une erreur s\'est produite';
     } else {
+      console.log('body : ' + body);
       response = processing.forecastProcessing(body);
     }
 
