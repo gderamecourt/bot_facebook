@@ -1,5 +1,8 @@
+// Imports
 var request = require('request');
 var conf = require('../conf');
+var processing = require('./processing');
+
 
 // Dealing with the reception of the message
 exports.receiveMessage = function(req, res, next){
@@ -92,18 +95,15 @@ function meteoHowTo(receiver){
 // gives the meteo back
 function meteoRequest(sender, city){
   // http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&APPID=conf.OWM_ID
-  var query = 'http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&APPID=' + conf.OWM_ID;
+  var query = 'http://api.openweathermap.org/data/2.5/forecast?q=London&units=metric&APPID=' + conf.OWM_ID;
 
-  var response = 'une erreur s\'est produite';
+  var response = '';
   request(query, function(error, response, body){
-    console.log('error : ' + error + ', response : ' + response + ', body : ' + body);
-    if (response) {
-      response = 'response : ' + response+ ', body : ' + body;
-    } else if (error){
-      response = error;
+    if (error !== null) {
+      response = 'une erreur s\'est produite';
+    } else {
+      response = processing.forecastProcessing(body);
     }
-
-    response = 'error : ' + ', response : ' + response.toString();
 
   });
 
