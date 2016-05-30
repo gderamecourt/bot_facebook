@@ -70,7 +70,7 @@ function firstMessage(receiver, data){
 // explains how to use the meteo function
 function meteoHowTo(receiver){
   payload = {
-    text: "Pour utiliser la météo, écrivez meteo-[nom de voter ville]"
+    text: "Pour consulter la météo, écrivez m [nom de votre ville]"
   }
 
   request({
@@ -96,13 +96,13 @@ function meteoRequest(sender, city){
 
   var response = 'une erreur s\'est produite';
   request(query, function(error, response, body){
-    // if (!error && response.statusCode == 200) {
-    //   response = 'response : ' + response+ ', body : ' + body;
-    // } else if (error){
-    //   response = error;
-    // }
+    if (response) {
+      response = 'response : ' + response+ ', body : ' + body;
+    } else if (error){
+      response = error;
+    }
 
-    response = 'error : ' + error.toString() + ', response : ' + response.toString() + ', body : ' + body.toString();
+    response = 'error : ' + ', response : ' + response.toString();
 
   });
 
