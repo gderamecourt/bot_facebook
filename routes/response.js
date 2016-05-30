@@ -96,6 +96,7 @@ function meteoRequest(sender, city){
 
   var response = 'une erreur s\'est produite';
   request(query, function(error, response, body){
+    console.log('error : ' + error + ', response : ' + response + ', body : ' + body);
     if (response) {
       response = 'response : ' + response+ ', body : ' + body;
     } else if (error){
