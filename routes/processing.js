@@ -1,6 +1,6 @@
 exports.forecastProcessing = function(jsonString){
 	var objectJson = JSON.parse(jsonString);
-	console.log('objectJson : ' + objectJson);
+	console.log('objectJson : ' + objectJson.city);
 	// Creation of the response string :
 	var response = 'Météo à  ' + objectJson.city.name + ' : ';
 
