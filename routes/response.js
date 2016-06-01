@@ -102,9 +102,13 @@ function meteoRequest(sender, city){
     if (error !== null) {
       response = 'une erreur s\'est produite';
     } else {
-      console.log('body : ' + body);
-      response = processing.forecastProcessing(body);
-      console.log('response : ' + response)
+      try {
+        response = processing.forecastProcessing(body);
+      } catch (err) {
+        console.log('Erreur : ' + err);
+        message = err;
+      }
+      console.log('response : ' + response);
     }
 
   });
