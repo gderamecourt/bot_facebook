@@ -93,11 +93,11 @@ function meteoRequest(receiver, city){
         response = err;
       }
       console.log('response : ' + response);
+
+      sendResponse(receiver, response);
     }
 
   });
-
-  sendResponse(receiver, response);
 
 }
 
