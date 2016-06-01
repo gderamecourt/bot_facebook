@@ -73,28 +73,10 @@ function firstMessage(receiver, data){
 // explains how to use the meteo function
 function meteoHowTo(receiver){
   sendResponse(receiver, 'test');
-  // payload = {
-  //   text: "Pour consulter la météo, écrivez m [nom de votre ville]"
-  // }
-
-  // request({
-  //   url: conf.FB_MESSAGE_URL,
-  //   method: 'POST',
-  //   qs: {
-  //     access_token: conf.PROFILE_TOKEN
-  //   },
-  //   json: {
-  //     recipient: {id: receiver},
-  //     message: payload
-  //   }
-  // }, function (error, response) {
-  //   if(error) console.log('Error sending message: ', error);
-  //   if(response.body.error) console.log('Error: ', response.body.error);
-  // });
 }
 
 // gives the meteo back
-function meteoRequest(sender, city){
+function meteoRequest(receiver, city){
   // http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&APPID=conf.OWM_ID
   var query = 'http://api.openweathermap.org/data/2.5/forecast?q=London&units=metric&APPID=' + conf.OWM_ID;
 
@@ -107,31 +89,14 @@ function meteoRequest(sender, city){
         response = processing.forecastProcessing(body);
       } catch (err) {
         console.log('Erreur : ' + err);
-        message = err;
+        response = err;
       }
       console.log('response : ' + response);
     }
 
   });
 
-  payload = {
-    "text": response
-  };
-
-  request({
-    url: conf.FB_MESSAGE_URL,
-    method: 'POST',
-    qs: {
-      access_token: conf.PROFILE_TOKEN
-    },
-    json: {
-      recipient: {id: sender},
-      message: payload
-    }
-  }, function (error, response) {
-    if(error) console.log('Error sending message: ', error);
-    if(response.body.error) console.log('Error response.body.error : ', response.body.error);
-  });
+  sendResponse(receiver, response);
 
 }
 
