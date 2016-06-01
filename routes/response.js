@@ -115,7 +115,7 @@ function meteoRequest(sender, city){
   });
 
   payload = {
-    text: response
+    "text": response
   };
 
   request({
@@ -135,9 +135,10 @@ function meteoRequest(sender, city){
 
 }
 
+// Function sending a response
 function sendResponse(message){
   payload = {
-    text: message
+    "text": message
   }
 
   request({
