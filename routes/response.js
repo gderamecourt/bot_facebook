@@ -87,6 +87,7 @@ function meteoRequest(receiver, city){
     } else {
       try {
         response = processing.forecastProcessing(body);
+        console.log('Response reçue : ' + response);
       } catch (err) {
         console.log('Erreur : ' + err);
         response = err;
