@@ -72,24 +72,25 @@ function firstMessage(receiver, data){
 
 // explains how to use the meteo function
 function meteoHowTo(receiver){
-  payload = {
-    text: "Pour consulter la météo, écrivez m [nom de votre ville]"
-  }
+  sendResponse('test');
+  // payload = {
+  //   text: "Pour consulter la météo, écrivez m [nom de votre ville]"
+  // }
 
-  request({
-    url: conf.FB_MESSAGE_URL,
-    method: 'POST',
-    qs: {
-      access_token: conf.PROFILE_TOKEN
-    },
-    json: {
-      recipient: {id: receiver},
-      message: payload
-    }
-  }, function (error, response) {
-    if(error) console.log('Error sending message: ', error);
-    if(response.body.error) console.log('Error: ', response.body.error);
-  });
+  // request({
+  //   url: conf.FB_MESSAGE_URL,
+  //   method: 'POST',
+  //   qs: {
+  //     access_token: conf.PROFILE_TOKEN
+  //   },
+  //   json: {
+  //     recipient: {id: receiver},
+  //     message: payload
+  //   }
+  // }, function (error, response) {
+  //   if(error) console.log('Error sending message: ', error);
+  //   if(response.body.error) console.log('Error: ', response.body.error);
+  // });
 }
 
 // gives the meteo back
@@ -137,7 +138,7 @@ function meteoRequest(sender, city){
 // Function sending a response
 function sendResponse(message){
   payload = {
-    "text": message
+    text: "Pour consulter la météo, écrivez m [nom de votre ville]"
   }
 
   request({
