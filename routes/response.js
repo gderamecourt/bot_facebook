@@ -72,7 +72,7 @@ function firstMessage(receiver, data){
 
 // explains how to use the meteo function
 function meteoHowTo(receiver){
-  sendResponse(receiver, 'test');
+  sendResponse(receiver, 'Pour consulter la météo, écrivez m [nom de votre ville]');
 }
 
 // gives the meteo back
