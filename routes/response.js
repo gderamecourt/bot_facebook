@@ -104,6 +104,7 @@ function meteoRequest(sender, city){
     } else {
       console.log('body : ' + body);
       response = processing.forecastProcessing(body);
+      console.log('response : ' + response)
     }
 
   });
