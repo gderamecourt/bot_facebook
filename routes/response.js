@@ -129,7 +129,7 @@ function meteoRequest(sender, city){
     }
   }, function (error, response) {
     if(error) console.log('Error sending message: ', error);
-    if(response.body.error) console.log('Error: ', response.body.error);
+    if(response.body.error) console.log('Error response.body.error : ', response.body.error);
   });
 
 }
