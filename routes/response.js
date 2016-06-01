@@ -103,7 +103,7 @@ function meteoRequest(receiver, city){
 // Function sending a response
 function sendResponse(receiver, message){
   payload = {
-    text: "Pour consulter la météo, écrivez m [nom de votre ville]"
+    text: message
   }
 
   request({
