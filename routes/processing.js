@@ -2,7 +2,7 @@ exports.forecastProcessing = function(jsonString){
 	var objectJson = JSON.parse(jsonString);
 	console.log('name : ' + objectJson.city.name);
 	// Creation of the response string :
-	var response = 'Météo à ' + objectJson.city.name + ' : \u000d';
+	var response = 'Météo à ' + objectJson.city.name + ' : \r';
 
 	for (i = 0; i < 9; i++){
 		// table with the previsions for a delta time
@@ -14,7 +14,7 @@ exports.forecastProcessing = function(jsonString){
 		// hours between the timestamps : 
 		var delta = Math.ceil((dt - curentDt)/3600);
 		response += 'dans ' + delta.toString() + 'h : ' + 
-			values.main.temp.toString() + ' degrés \u000d';
+			values.main.temp.toString() + ' degrés \r';
 
 	}
 	// take the 9 first dt to be sure to have the weather for the day after : 
