@@ -13,7 +13,8 @@ exports.forecastProcessing = function(jsonString){
 		var curentDt = Math.floor(Date.now() / 1000);
 		// hours between the timestamps : 
 		var delta = Math.ceil((dt - curentDt)/3600);
-		response += 'dans ' + delta + ' heures, il fera ' + values.main.temp + ' degrés \u240D';
+		response += 'dans ' + delta.toString() + ' heures, il fera ' + 
+			values.main.temp.toString() + ' degrés \u240D';
 
 	}
 	// take the 9 first dt to be sure to have the weather for the day after : 
