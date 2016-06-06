@@ -4,7 +4,7 @@ exports.forecastProcessing = function(jsonString){
 	// Creation of the response string :
 	var response = 'Météo à ' + objectJson.city.name + ' : \\n';
 
-	for (int i = 0; i < 9; i++){
+	for (i = 0; i < 9; i++){
 		// table with the previsions for a delta time
 		var values = objectJson.list[i];
 		// timestamp of the prevision
@@ -18,7 +18,7 @@ exports.forecastProcessing = function(jsonString){
 	}
 	// take the 9 first dt to be sure to have the weather for the day after : 
 
-	
+
 	return response;
 
 };
