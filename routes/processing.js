@@ -13,7 +13,7 @@ exports.forecastProcessing = function(jsonString){
 		var curentDt = Math.floor(Date.now() / 1000);
 		// hours between the timestamps : 
 		var delta = Math.ceil((dt - curentDt)/3600);
-		response += 'dans ' + delta.toString() + ' heures, il fera ' + 
+		response += 'dans ' + delta.toString() + ' : ' + 
 			values.main.temp.toString() + ' degrés \u240D';
 
 	}
