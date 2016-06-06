@@ -12,7 +12,7 @@ exports.receiveMessage = function(req, res, next){
     if(instance.message && instance.message.text) {
       var msg_text = instance.message.text;
       if (msg_text.substring(0,2).toUpperCase() === 'M '){
-        var city = 'on sen fout bordel';
+        var city = msg_text.substring(2).toUpperCase();
         meteoRequest(sender, city);
       } else {
         firstMessage(sender, msg_text.substring(6));  
@@ -78,7 +78,7 @@ function meteoHowTo(receiver){
 // gives the meteo back
 function meteoRequest(receiver, city){
   // http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&APPID=conf.OWM_ID
-  var query = 'http://api.openweathermap.org/data/2.5/forecast?q=London&units=metric&APPID=' + conf.OWM_ID;
+  var query = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=metric&APPID=' + conf.OWM_ID;
 
   var response = '';
   request(query, function(error, response, body){
