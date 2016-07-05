@@ -14,7 +14,7 @@ exports.forecastProcessing = function(jsonString){
 		// hours between the timestamps : 
 		var delta = Math.ceil((dt - curentDt)/3600);
 
-		var meteo = weatherToMeteo(values.weather[0].main);
+		var meteo = weatherToMeteo(values.weather[0].description);
 
 		response += delta.toString() + 'h : ' + 
 			values.main.temp.toString() + '°, '+ meteo + '\n';
@@ -30,9 +30,6 @@ exports.forecastProcessing = function(jsonString){
 function weatherToMeteo(weather){
 	var meteo;
 	switch(weather.toUpperCase()){
-		case 'CLEAR': 
-			meteo = 'ciel bleu';
-		break;
 		case 'CLEAR SKY': 
 			meteo = 'ciel bleu';
 		break;
