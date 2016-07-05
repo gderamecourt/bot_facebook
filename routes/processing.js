@@ -17,7 +17,7 @@ exports.forecastProcessing = function(jsonString){
 		var meteo = weatherToMeteo(values.weather[0].main);
 
 		response += delta.toString() + 'h : ' + 
-			values.main.temp.toString() + ' °, '+ meteo + '\n';
+			values.main.temp.toString() + '°, '+ meteo + '\n';
 
 	}
 	// take the 8 first dt to be sure to have the weather for the day after : 
@@ -30,6 +30,9 @@ exports.forecastProcessing = function(jsonString){
 function weatherToMeteo(weather){
 	var meteo;
 	switch(weather.toUpperCase()){
+		case 'CLEAR': 
+			meteo = 'ciel bleu';
+		break;
 		case 'CLEAR SKY': 
 			meteo = 'ciel bleu';
 		break;
